@@ -33,8 +33,11 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          name: Run tests
+          name: tests
           command: pytest
+      - run:
+          name: linting
+          commande: flake8
 
 #  deploy:
 #    docker:
