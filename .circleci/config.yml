@@ -13,14 +13,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-#  flake8:
-#    docker:
-#          - image:
-#        steps:
-#          - checkout
-#          - run:
-#              name: "flake8"
-#              command: ""
+
   build-and-test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -33,11 +26,11 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          name: tests
+          name: Tests
           command: pytest
       - run:
-          name: linting
-          commande: flake8
+          name: Linting
+          command: flake8
 
 #  deploy:
 #    docker:
