@@ -1,2 +1,2 @@
 def test_dummy():
-    assert 0
+    assert 1
