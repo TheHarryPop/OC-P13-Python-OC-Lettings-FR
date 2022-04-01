@@ -5,35 +5,51 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  patate:
+#  flake8:
+#    docker:
+#          - image:
+#        steps:
+#          - checkout
+#          - run:
+#              name: "flake8"
+#              command: ""
+  build-and-test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/base:stable
+      - image: cimg/python:3.6
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - python/install-packages:
+          - pkg-manager: pip
       - run:
-          name: "patate"
-          command: "echo Hello, World!"
-  hello truc:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "hello truc"
-          command: "echo Hello, World!"
+          name: Run tests
+          command: pytest
+
+#  deploy:
+#    docker:
+#      - image:
+#    steps:
+#      - checkout
+#      - run:
+#          name: "deployment"
+#          command: ""
+
+orbs:
+  # The python orb contains a set of prepackaged CircleCI configuration you can use repeatedly in your configuration files
+  # Orb commands and jobs help you with common scripting around a language/tool
+  # so you dont have to copy and paste it everywhere.
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
+  python: circleci/python@1.2
+
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  workflow:
     jobs:
-      - hello truc
-      - patate
-
+#      - flake8
+      - build-and-test
+#      - deploy
