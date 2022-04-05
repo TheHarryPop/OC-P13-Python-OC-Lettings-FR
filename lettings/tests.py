@@ -8,7 +8,8 @@ class TestLettingsView:
     @pytest.mark.django_db
     def test_retrieve_letting_index(self, client):
         address_1 = Address.objects.create(number="1", street="la joie", city="south park",
-                                           state="florida", zip_code="76560", country_iso_code="222")
+                                           state="florida", zip_code="76560",
+                                           country_iso_code="222")
         Letting.objects.create(title="Maison", address=address_1)
         response = client.get(reverse('lettings_index'))
 
