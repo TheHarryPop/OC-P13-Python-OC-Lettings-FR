@@ -44,7 +44,10 @@ jobs:
           TAG=0.1.$CIRCLE_BUILD_NUM
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker build -t theharrypop/oc-lettings:$TAG .
+          docker tag theharrypop/oc_lettings:$TAG theharrypop/oc_lettings:latest
           docker push theharrypop/oc-lettings:$TAG
+          docker push theharrypop/oc-lettings:latest
+          
 
 
 
