@@ -10,4 +10,4 @@ COPY . /app
 
 EXPOSE 5000
 
-CMD ["python", "manage.py runserver"]
+CMD ["python", "python manage.py runserver"]
