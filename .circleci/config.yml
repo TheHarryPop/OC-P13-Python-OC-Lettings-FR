@@ -40,8 +40,9 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
           docker_layer_caching: true
-      - run:
+      - run: |
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker build -t theharrypop/oc-lettings:latest .
 
 
 
