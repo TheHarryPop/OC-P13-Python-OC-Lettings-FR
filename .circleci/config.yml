@@ -92,9 +92,4 @@ workflows:
           filters:
             branches:
               only: master
-#      - heroku/deploy-via-git:
-#          requires:
-#            - build-and-push
-#          filters:
-#            branches:
-#              only: master
+
