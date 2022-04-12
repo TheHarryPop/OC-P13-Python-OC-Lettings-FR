@@ -12,7 +12,6 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-
   build-and-test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -48,19 +47,6 @@ jobs:
           docker tag theharrypop/oc-lettings:$TAG theharrypop/oc-lettings:latest
           docker push theharrypop/oc-lettings:$TAG
           docker push theharrypop/oc-lettings:latest
-
-#  deploy:
-#    docker:
-#      - image: cimg/python:3.10.4
-#    working_directory: ~/project
-#    # Add steps to the job
-#    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-#    steps:
-#      - checkout
-#      - setup_remote_docker
-#      - python/install-packages:
-#            pkg-manager: pip
-#      - run: echo deploy
 
 
 # Invoke jobs via workflows
