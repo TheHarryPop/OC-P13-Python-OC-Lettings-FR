@@ -70,7 +70,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
-        'CONN_MAX_AGE': 500,
     }
 }
 
