@@ -72,7 +72,7 @@ workflows:
           filters:
             branches:
               ignore: master
-  build-and-push:
+  build-and-push-and-deploy:
     jobs:
       - build-and-test
       - build-and-push:
@@ -81,10 +81,19 @@ workflows:
           filters:
             branches:
               only: master
-  deploy:
-    jobs:
-      - heroku/deploy-via-git
-#      - deploy:
+      - heroku/deploy-via-git:
+          requires:
+            - build-and-push
+          filters:
+            branches:
+              only: master
+
+#  deploy:
+#    jobs:
+#      - build-and-push
+#      - heroku/deploy-via-git:
+#          requires:
+#            - build-and-push
 #          filters:
 #            branches:
 #              only: master
