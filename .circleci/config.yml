@@ -48,6 +48,26 @@ jobs:
           docker push theharrypop/oc-lettings:$TAG
           docker push theharrypop/oc-lettings:latest
 
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - run:
+          name: Storing previous commit
+          command: |
+            git rev-parse HEAD > ./commit.txt
+      - heroku/install
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      - run:
+          name: Pushing to heroku registry
+          command: |
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -67,16 +87,12 @@ workflows:
           filters:
             branches:
               only: master
-      - heroku/deploy-via-git:
+      - deploy:
           requires:
             - build-and-push
           filters:
             branches:
               only: master
-
-#  deploy:
-#    jobs:
-#      - build-and-push
 #      - heroku/deploy-via-git:
 #          requires:
 #            - build-and-push
