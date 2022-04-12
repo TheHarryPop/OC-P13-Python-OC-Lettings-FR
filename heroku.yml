@@ -1,0 +1,6 @@
+setup:
+  config:
+    APP_NAME: oc-lettings
+build:
+  docker:
+    web: Dockerfile

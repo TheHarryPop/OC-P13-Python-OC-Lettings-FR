@@ -6,6 +6,7 @@ orbs:
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.5.0
+  heroku: circleci/heroku@0.0.10
 
 
 # Define a job to be invoked later in a workflow.
@@ -47,12 +48,6 @@ jobs:
           docker tag theharrypop/oc-lettings:$TAG theharrypop/oc-lettings:latest
           docker push theharrypop/oc-lettings:$TAG
           docker push theharrypop/oc-lettings:latest
-          
-
-
-
-
-
 
 #  deploy:
 #    docker:
@@ -86,16 +81,10 @@ workflows:
           filters:
             branches:
               only: master
-
-
-#  deploy:
-#    jobs:
-#      - build-and-test
+  deploy:
+    jobs:
+      - heroku/deploy-via-git
 #      - deploy:
-#          requires:
-#            - build-and-test
 #          filters:
 #            branches:
 #              only: master
-
-
