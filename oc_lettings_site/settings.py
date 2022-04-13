@@ -1,5 +1,8 @@
 import os
 import django_heroku
+import sentry_sdk
+
+from sentry_sdk.integrations.django import DjangoIntegration
 from django.core.management.utils import get_random_secret_key
 
 
@@ -113,3 +116,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 django_heroku.settings(locals())
+
+sentry_sdk.init(
+    dsn="https://40cbf7c8452f406581e3eac73e1cf19c@o1202833.ingest.sentry.io/6328281",
+    integrations=[DjangoIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
