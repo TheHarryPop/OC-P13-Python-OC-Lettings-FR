@@ -14,7 +14,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'Add SECRET_KEY in your .env')
-# SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1'
@@ -122,7 +121,6 @@ django_heroku.settings(locals())
 
 sentry_sdk.init(
     dsn=os.environ.get('SENTRY_KEY'),
-    # dsn="https://40cbf7c8452f406581e3eac73e1cf19c@o1202833.ingest.sentry.io/6328281",
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
