@@ -3,7 +3,7 @@ import django_heroku
 import sentry_sdk
 
 from sentry_sdk.integrations.django import DjangoIntegration
-from django.core.management.utils import get_random_secret_key
+# from django.core.management.utils import get_random_secret_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
