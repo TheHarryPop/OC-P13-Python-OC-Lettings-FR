@@ -118,7 +118,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 django_heroku.settings(locals())
 
 sentry_sdk.init(
-    dsn="https://40cbf7c8452f406581e3eac73e1cf19c@o1202833.ingest.sentry.io/6328281",
+    dsn=os.environ.get("SENTRY_KEY"),
+    # dsn="https://40cbf7c8452f406581e3eac73e1cf19c@o1202833.ingest.sentry.io/6328281",
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
