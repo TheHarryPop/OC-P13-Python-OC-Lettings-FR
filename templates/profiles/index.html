@@ -3,17 +3,21 @@
     <head>
         {% load static %}
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static 'profiles/css/style.css' %}" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %">
+        <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/style.css' %}">
         <title>Profiles</title>
     </head>
     <body>
-    <div class="section">
-        <h1>Profiles</h1>
-        {% if profiles_list %}
+            <div class="header">
+                <h1>Profiles</h1>
+            </div>
+            <aside class="sidebar">
+            </aside>
             <div class="content">
+                {% if profiles_list %}
                 <ul>
                     {% for profile in profiles_list %}
-                    <li>
+                    <li class="item">
                         <a href="{% url 'profile' username=profile.user.username %}">
                             {{ profile.user.username }}
                         </a>
@@ -22,13 +26,13 @@
                 </ul>
                 {% else %}
                 <p>No profiles are available.</p>
+                {% endif %}
             </div>
-        {% endif %}
-    </div>
-
-    </body>
-    <footer>
-        <div><a href="{% url 'index' %}">Home</a></div>
-        <div><a href="{% url 'lettings_index' %}">Lettings</a></div>
-    </footer>
+            <aside class="sidebar secondary">
+            </aside>
+            <footer class="footer">
+                <div><a href="{% url 'index' %}">Home</a></div>
+                <div><a href="{% url 'lettings_index' %}">Lettings</a></div>
+            </footer>
+        </body>
 </html>
