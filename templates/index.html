@@ -1,4 +1,25 @@
-<title>Holiday Homes</title>
-<h1>Welcome to Holiday Homes</h1>
-<div><a href="{% url 'profiles_index' %}">Profiles</a></div>
-<div><a href="{% url 'lettings_index' %}">Lettings</a></div>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'oc_lettings_site/css/style.css' %}">
+        <title>Holiday Homes</title>
+    </head>
+       <body>
+        <div class="header">
+            <h1>Welcome to Holiday Homes</h1>
+        </div>
+        <aside class="sidebar">
+        </aside>
+        <div class="content">
+            <div><a href="{% url 'profiles_index' %}">Profiles</a></div>
+            <div><a href="{% url 'lettings_index' %}">Lettings</a></div>
+        </div>
+        <aside class="sidebar secondary">
+        </aside>
+        <footer class="footer">
+        </footer>
+    </body>
+</html>

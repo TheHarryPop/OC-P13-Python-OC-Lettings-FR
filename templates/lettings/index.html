@@ -1,17 +1,38 @@
-<title>Lettings</title>
-<h1>Lettings</h1>
-{% if lettings_list %}
-    <ul>
-    {% for letting in lettings_list %}
-        <li>
-            <a href="{% url 'letting' letting_id=letting.id %}">
-                {{ letting.title }}
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No lettings are available.</p>
-{% endif %}
-<div><a href="{% url 'index' %}">Home</a></div>
-<div><a href="{% url 'profiles_index' %}">Profiles</a></div>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'lettings/css/style.css' %}">
+        <title>Lettings</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Lettings</h1>
+        </div>
+        <aside class="sidebar">
+        </aside>
+        <div class="content">
+            {% if lettings_list %}
+            <ul>
+                {% for letting in lettings_list %}
+                <li>
+                    <a href="{% url 'letting' letting_id=letting.id %}">
+                        {{ letting.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No lettings are available.</p>
+            {% endif %}
+        </div>
+        <aside class="sidebar secondary">
+        </aside>
+        <footer class="footer">
+            <div><a href="{% url 'index' %}">Home</a></div>
+            <div><a href="{% url 'profiles_index' %}">Profiles</a></div>
+        </footer>
+    </body>
+</html>
