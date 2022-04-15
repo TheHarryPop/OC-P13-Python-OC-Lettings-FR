@@ -1,0 +1,34 @@
+body, html {
+	line-height: 1.8;
+	padding: 0;
+	margin: 0;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+a {
+	color: white;
+}
+
+.header, .content, .sidebar, .footer{
+	padding: 26px 34px;
+	color: white;
+	box-sizing: border-box;
+}
+
+.header {
+	background-color: #2b2024;
+}
+
+.content {
+	background-color: #fd0054;
+}
+
+.sidebar {
+	background-color: #a80038;
+	color: white;
+}
+
+.footer {
+	background-color: #2b2024;
+	color: white;
+}
