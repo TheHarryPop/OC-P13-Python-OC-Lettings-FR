@@ -18,10 +18,12 @@ a {
 
 .header {
 	background-color: #2b2024;
+	height: 10%;
 }
 
 .content {
 	background-color: #fd0054;
+	height: 80%;
 }
 
 .sidebar {
@@ -32,4 +34,5 @@ a {
 .footer {
 	background-color: #2b2024;
 	color: white;
+	height: 10%;
 }
