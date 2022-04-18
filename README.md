@@ -75,3 +75,37 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+### Déploiement
+
+Nécessite :
+- Compte CircleCi
+- Compte Docker
+- Compte Heroku
+- Compte Sentry
+
+Le déploiement est géré par le fichier config.yml présent dans le dossier ./.circleci. Ce dernier est provoqué lors d'un push du code vers le repository GitHub.
+Un push sur la branche master déclenchera les tests pytest ainsi que les tests flake8. Par la suite, l'application est conteneurisée avec Docker et pour finir 
+elle est déployée en ligne grâce à Heroku.
+
+URL de l'application en ligne : https://oc-lettings-2022.herokuapp.com
+
+Dans le cas d'un push sur une branche autre que "master", seuls les tests pytest et flake8 seront réalisés.
+
+Dans le dépôt CircleCi renseigner les variables d'environnement :
+- `SECRET_KEY` = Clé secrète de l'application Django
+- `DOCKER_USER` = Votre identifiant DOCKERHUB
+- `DOCKER_PASS` = Votre mot de passe DOCKERHUB
+- `HEROKU_API_KEY` = Clé de l'application HEROKU
+- `HEROKU_APP_NAME` = Nom de l'application HEROKU
+
+Dans le fichier config.yml remplacer:
+- `theharrypop/oc-lettings` par le nom de votre dépôt DockerHub
+
+Dans le fichier .env renseigner :
+- `SECRET_KEY`
+- `ALLOWED_HOST`
+- `DEBUG` = 0 pour False, 1 pour True
+- `SENTRY_KEY` pour l'utilisation de l'application SENTRY
+
+L'URL suivante : `https://oc-lettings-2022.herokuapp.com/sentry-debug/` soulève une exception pour tester le bon fonctionnement du suivi de problèmes sur Sentry
